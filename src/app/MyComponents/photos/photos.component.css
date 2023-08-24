@@ -1,0 +1,13 @@
+.gapPadding {
+    padding-top: 3em;
+}
+
+.Image-Gallery {
+    width: 250px;
+    height: 150px;
+}
+
+.Image-Loading {
+    width: 350px;
+    height: fit-content;
+}

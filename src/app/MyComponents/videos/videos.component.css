@@ -1,0 +1,14 @@
+.gapPadding {
+    padding-top: 3em;
+}
+@media screen and (max-width: 991px) {
+    .col-lg-4 video {
+      float: none;
+      width: 100%;
+    }
+}
+
+.Video-Loading {
+    width: 350px;
+    height: fit-content;
+}

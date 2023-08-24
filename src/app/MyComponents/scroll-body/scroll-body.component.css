@@ -1,0 +1,17 @@
+.photo-gallery {
+    padding-top: 1.4em;
+}
+.Image-Gallery {
+    width: 250px;
+    height: 150px;
+}
+.VideoViewAll {
+    width: 300px;
+    height: 150px;
+}
+@media screen and (max-width: 991px) {
+    .col-lg-4 iframe {
+      float: none;
+      width: 100%;
+    }
+}

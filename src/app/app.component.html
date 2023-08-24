@@ -1,0 +1,45 @@
+<div>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" routerLink="">
+            <img class="img-thumbnail border-0" src="assets/digital-album-logo1.png">
+            <i class="bold-title"><b>{{title}}</b></i>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="vr"></div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/AddContent">Add Content</a>
+                </li>
+                <li ngbDropdown class="nav-item dropdown">
+                    <div ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </div>
+                    <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a ngbDropdownItem class="dropdown-item" routerLink="/Photos">Photos</a>
+                        <a ngbDropdownItem class="dropdown-item" routerLink="/Videos">Videos</a>
+                        <div class="dropdown-divider"></div>
+                        <a ngbDropdownItem class="dropdown-item" routerLink="/NoteStories">Note & Stories</a>
+                    </div>
+                </li>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

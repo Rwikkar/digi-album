@@ -1,0 +1,54 @@
+<div ng-app="app" *ngIf="showContent">
+    <div ng-controller="UploadController as vm">
+        <div class="container">
+            <div class="page-header">
+            </div>
+
+            <div class="alert alert-info">
+                Please Upload the Document Below !
+            </div>
+
+            <form ng-model="vm.file" ngFmy-file-upload>
+                <div class="form-group">
+                    <label for="fileName">Select the file type</label>
+                    <select #values class="bootstrap-select ms-3" (click)="onSelectOptions(values.value)">
+                        <option value="image" selected="selected">Photo</option>
+                        <option value="video">Video</option>
+                        <option value="text">Text</option>
+                        <option value="text-file">Text File</option>
+                    </select>
+                    <br><br>
+                    <label for="fileName" *ngIf="format==='image' || format==='video' || format==='text-file'">Select a
+                        file</label>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <input type="file" name="stCard" [accept]="acceptType"
+                                *ngIf="format==='image' || format==='video' || format==='text-file'"
+                                (change)="onSelectFile($event)">
+                            <img [src]="imageSource" *ngIf="format==='image' && imageSource" height="150">
+                            <video [src]="imageSource" *ngIf="format==='video' && imageSource" height="150"
+                                controls></video>
+                            <img [src]="imageSource" *ngIf="format==='text-file' && imageSource" height="150">
+                        </span>
+                        <textarea class="form-control" id="exampleFormControlTextarea3" rows="14"
+                            placeholder="Write something here..." *ngIf="format==='text'"></textarea>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="reset" class="btn btn-default" ng-click="reset()">Reset</button>
+                    <!--<button type="button" class="btn btn-primary" ng-click="vm.upload()"
+                        ng-disabled="!vm.file">Upload</button>-->
+                    <button type="button" class="btn btn-primary" (click)="doUpload()">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--    Successful Upload Pop-up    -->
+
+<!-- Loading -->
+<div *ngIf="showLoader" class="mt-5 text-center">
+    <img class="Image-Loading" src="/assets/loading.gif" />
+</div>

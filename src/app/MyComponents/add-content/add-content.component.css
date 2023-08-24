@@ -1,0 +1,12 @@
+.container {
+    padding-top: 4.5em;
+}
+
+.demo-upload-image {
+    padding-left: 5em;
+}
+
+.Image-Loading {
+    width: 350px;
+    height: fit-content;
+}

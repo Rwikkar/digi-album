@@ -1,0 +1,31 @@
+<p class="gapPadding"></p>
+<div *ngIf="showLoader" class="mt-5 text-center">
+    <img class="Image-Loading" src="/assets/loading.gif" />
+</div>
+
+<div class="container">
+    <div class="row text-center text-lg-start">
+        <div class="col-lg-3 col-md-4 col-6 pt-2" *ngFor="let data of AllPhotoData">
+            <a href="#" class="d-block mb-1">
+                <img class="img-fluid img-thumbnail Image-Gallery" [src]="data.raw_data" alt="">
+            </a>
+            <figcaption class="figure-caption">
+                <b>Caption:</b> {{data.caption}}
+            </figcaption>
+        </div>
+    </div>
+</div>
+
+<!--<button (click)="getAllPhotos()">Click Here</button>-->
+<!--<div class="divClass" *ngFor="let id of PhotoIds">
+    <div>
+        {{id.id}}
+        
+        <img [src]="getPhoto(id.id)">
+    </div>
+</div>-->
+<!--<div class="divClass" *ngFor="let data of AllPhotoData">
+    <div>
+        <img [src]="data.raw_data">
+    </div>
+</div>-->
