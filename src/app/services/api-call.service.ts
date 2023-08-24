@@ -13,27 +13,27 @@ export class ApiCallService {
   postImageData(file: Blob) {
     let formData = new FormData();
     formData.append("image", file);
-    return this.httpClient.post(`http://localhost:8080/image`, formData);
+    return this.httpClient.post(`https://restapifordigialbumproject-production.up.railway.app/image`, formData);
   }
 
   getAllImages(fileType: String): Observable<any[]> {
-    return this.httpClient.get<any>(`http://localhost:8080/Photos/`+fileType).pipe(
+    return this.httpClient.get<any>(`https://restapifordigialbumproject-production.up.railway.app/Photos/`+fileType).pipe(
       map(res => res as any[])
       );
   }
 
   /*getAllImageIds() {
-    return this.httpClient.get(`http://localhost:8080/Photos`);
+    return this.httpClient.get(`https://restapifordigialbumproject-production.up.railway.app/Photos`);
   }*/
 
   /*getAllImageIds(): Observable<any[]> {
-    return this.httpClient.get<any>(`http://localhost:8080/Photos`).pipe(
+    return this.httpClient.get<any>(`https://restapifordigialbumproject-production.up.railway.app/Photos`).pipe(
       map(res => res as any[])
     );
   }
 
   getImageById(imageId: number): Observable<any> {
-    return this.httpClient.get(`http://localhost:8080/Photos/` + imageId).pipe(
+    return this.httpClient.get(`https://restapifordigialbumproject-production.up.railway.app/Photos/` + imageId).pipe(
       map(res => res as any)
     );
   }*/
