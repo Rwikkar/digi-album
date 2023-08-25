@@ -21,6 +21,9 @@ export class VideosComponent implements OnInit {
   AllPhotoData: any;
   tempData: any;
   showLoader: any;
+  imgSrcData: any;
+  imgCaption: any;
+  imgDescription: any;
 
   getAllPhotos() {
     this.showLoader = true;
@@ -47,5 +50,11 @@ export class VideosComponent implements OnInit {
         this.showLoader = false;
       }
     })
+  }
+
+  clickOnPhoto(imgTagId: any, imgCaption: any, imgDescription: any) {
+    this.imgSrcData = (document.getElementById(imgTagId))?.getAttribute('src');
+    this.imgCaption = imgCaption;
+    this.imgDescription = imgDescription;
   }
 }

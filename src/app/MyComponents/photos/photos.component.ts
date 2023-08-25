@@ -13,10 +13,14 @@ export class PhotosComponent implements OnInit {
   ngOnInit() {
     this.getAllPhotos();
   }
+  
 
   AllPhotoData: any;
   tempData: any;
   showLoader: any;
+  imgSrcData: any;
+  imgCaption: any;
+  imgDescription: any;
 
   getAllPhotos() {
     this.showLoader = true;
@@ -45,7 +49,11 @@ export class PhotosComponent implements OnInit {
     })
   }
 
-
+  clickOnPhoto(imgTagId: any, imgCaption: any, imgDescription: any) {
+    this.imgSrcData = (document.getElementById(imgTagId))?.getAttribute('src');
+    this.imgCaption = imgCaption;
+    this.imgDescription = imgDescription;
+  }
   /*photoUrl=""
   getPhoto(PIds: number) {
     this.api.getImageById(PIds).subscribe({

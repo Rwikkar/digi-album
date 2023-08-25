@@ -6,12 +6,44 @@
 <div class="container">
     <div class="row text-center text-lg-start">
         <div class="col-lg-3 col-md-4 col-6 pt-2" *ngFor="let data of AllPhotoData">
-            <a href="#" class="d-block mb-1">
-                <img class="img-fluid img-thumbnail Image-Gallery" [src]="data.raw_data" alt="">
-            </a>
-            <figcaption class="figure-caption">
-                <b>Caption:</b> {{data.caption}}
-            </figcaption>
+            <button (click)="clickOnPhoto(data.id, data.caption, data.description)" type="button" class="border-0"
+                data-bs-toggle="modal" data-bs-target="#myModal">
+                <a class="d-block mb-1">
+
+                    <img [id]="data.id" class="img-fluid img-thumbnail Image-Gallery" [src]="data.raw_data" alt="">
+
+                </a>
+                <figcaption class="figure-caption">
+                    <b>Caption:</b> {{data.caption}}
+                </figcaption>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!--<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img [src]="imgSrcData" class="img-responsive">
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<div id="myModal" class="modal fade" aria-labelledby="my-modalLabel" aria-hidden="true" tabindex="-1" role="dialog">
+    <div class="modal-dialog" data-dismiss="modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                <img [src]="imgSrcData" class="img-responsive" style="width: 100%;">
+                <figcaption class="figure-caption">
+                    <b>Caption:</b> {{imgCaption}}
+                </figcaption>
+                <figcaption class="figure-caption">
+                    <b>Description:</b> {{imgDescription}}
+                </figcaption>
+            </div>
         </div>
     </div>
 </div>
