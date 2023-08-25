@@ -5,19 +5,21 @@
 
 <div class="container">
     <div class="row text-center text-lg-start">
-        <div class="col-lg-3 col-md-4 col-6 pt-2" *ngFor="let data of AllPhotoData">
+        <div class="col-lg-3 col-md-4 col-6 pt-2 main-div" *ngFor="let data of AllPhotoData">
             <button (click)="clickOnPhoto(data.id, data.caption, data.description)" type="button" class="border-0"
                 data-bs-toggle="modal" data-bs-target="#myModal">
                 <a class="d-block mb-1">
-                    <video class="embed-responsive-item" [id]="data.id" [src]="data.raw_data" alt="" controls
-                        height="150">
-                    </video>
+                    <div class="ratio ratio-4x3">
+                        <video class="embed-responsive-item video-tab-class" [id]="data.id" [src]="data.raw_data" alt=""
+                            controls height="150">
+                        </video>
+                    </div>
                 </a>
-                <figcaption class="figure-caption">
-                    <b>Caption:</b> {{data.caption}}
+                <figcaption class="figure-caption-desc">
+                    <b>Description:</b> This is a video description is for testing purpose
                 </figcaption>
                 <figcaption class="figure-caption">
-                    <b>Description:</b> {{data.description}}
+                    <b>Caption:</b> {{data.caption}}
                 </figcaption>
             </button>
         </div>

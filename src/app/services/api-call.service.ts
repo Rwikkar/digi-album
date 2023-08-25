@@ -10,6 +10,8 @@ export class ApiCallService {
   constructor(
     private httpClient: HttpClient
   ) { }
+  // http://localhost:8080
+  // https://restapifordigialbumproject-production.up.railway.app
   postImageData(file: Blob) {
     let formData = new FormData();
     formData.append("image", file);
@@ -21,8 +23,14 @@ export class ApiCallService {
       map(res => res as any[])
       );
   }
+  
+  postTextData(textData: string) {
+    let formData = new FormData();
+    formData.append("file", textData);
+    return this.httpClient.post(`https://restapifordigialbumproject-production.up.railway.app/text`, formData);
+  }
 
-  /*getAllImageIds() {
+  /*postTextData() {
     return this.httpClient.get(`https://restapifordigialbumproject-production.up.railway.app/Photos`);
   }*/
 

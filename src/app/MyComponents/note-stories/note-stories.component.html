@@ -1,1 +1,6 @@
 <p>note-stories works!</p>
+<button (click)="getTextValue()">Click Me!</button>
+<textarea type="HTMLTextAreaElement" class="form-control" id="exampleFormControlTextarea3" rows="8"
+*ngFor="let data of AllTextData">
+    {{data.raw_data}}
+</textarea>

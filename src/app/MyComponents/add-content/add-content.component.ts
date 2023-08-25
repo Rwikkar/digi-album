@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotosComponent } from '../photos/photos.component';
 import { ApiCallService } from 'src/app/services/api-call.service';
+//import * as fs from 'fs';
+//import * as path from 'path';
 
 @Component({
   selector: 'app-add-content',
@@ -61,6 +63,45 @@ export class AddContentComponent implements OnInit {
     this.showLoader = true;
     this.showContent = false;
     this.api.postImageData(this.file).subscribe({
+      next:(response)=>{
+        console.log(response);
+        alert("Done!")
+        this.showLoader = false;
+        this.showContent = true;
+      },
+      error:(error)=>{
+        console.log(error);
+        alert("Error!")
+        this.showLoader = false;
+        this.showContent = true;
+      },
+      complete:()=>{
+        console.log("Request Completed!");
+        this.showLoader = false;
+        this.showContent = true;
+      }
+    })
+  }
+
+  textAreaValue: any;
+  textToBase64: any;
+  textToBlob: any;
+  doTextUpload() {
+    this.showLoader = true;
+    this.showContent = false;
+    this.textAreaValue = (document.getElementById('exampleFormControlTextarea3') as HTMLInputElement).value;
+    //
+    /*fs.writeFileSync(path.join('./', 'tempTxtFile'), this.textAreaValue, {
+      flag: 'w',
+    });
+    const contents = fs.readFileSync(path.join('./', this.textAreaValue), 'utf-8');
+    console.log(contents);*/
+    //console.log(this.textAreaValue);
+    /*console.log(btoa(this.textAreaValue));
+    this.textToBase64 = btoa(this.textAreaValue);
+    this.textToBlob = fetch(`data:plain/text;base64,${this.textToBase64}`).then(res => res.blob());
+    console.log(this.textToBlob);*/
+    this.api.postTextData(this.textAreaValue).subscribe({
       next:(response)=>{
         console.log(response);
         alert("Done!")

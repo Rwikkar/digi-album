@@ -30,7 +30,7 @@
                                 controls></video>
                             <img [src]="imageSource" *ngIf="format==='text-file' && imageSource" height="150">
                         </span>
-                        <textarea class="form-control" id="exampleFormControlTextarea3" rows="14"
+                        <textarea type="HTMLTextAreaElement" class="form-control" id="exampleFormControlTextarea3" rows="14"
                             placeholder="Write something here..." *ngIf="format==='text'"></textarea>
                     </div>
                 </div>
@@ -39,7 +39,10 @@
                     <button type="reset" class="btn btn-default" ng-click="reset()">Reset</button>
                     <!--<button type="button" class="btn btn-primary" ng-click="vm.upload()"
                         ng-disabled="!vm.file">Upload</button>-->
-                    <button type="button" class="btn btn-primary" (click)="doUpload()">Upload</button>
+                    <button *ngIf="format==='image' || format==='video' || format==='text-file'" type="button"
+                        class="btn btn-primary" (click)="doUpload()">Upload</button>
+                    <button *ngIf="format==='text'" type="button" class="btn btn-primary"
+                        (click)="doTextUpload()">Upload</button>
                 </div>
             </form>
         </div>
