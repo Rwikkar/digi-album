@@ -3,7 +3,7 @@
     <img class="Video-Loading" src="./assets/loading.gif" />
 </div>
 
-<div class="container">
+<div class="container" *ngIf="showContent">
     <div class="row text-center text-lg-start">
         <div class="col-lg-3 col-md-4 col-6 pt-2 main-div" *ngFor="let data of AllPhotoData">
             <button (click)="clickOnPhoto(data.id, data.caption, data.description)" type="button" class="border-0"
@@ -38,6 +38,10 @@
                 <figcaption class="figure-caption">
                     <b>Description:</b> {{imgDescription}}
                 </figcaption>
+                <button type="button" class="btn btn-outline-danger button-2 pt-2 pb-2 ps-3 pe-3" title="Delete Photo"
+                    (click)="deleteVideoFile(vdoTagId)">
+                    <img src="./assets/bin.png" height="20px">
+                </button>
             </div>
         </div>
     </div>

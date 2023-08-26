@@ -30,6 +30,17 @@ export class ApiCallService {
     return this.httpClient.post(`https://restapifordigialbumproject-production.up.railway.app/text`, formData);
   }
 
+  updateTextData(id_no: number, textData: string) {
+    let formData = new FormData();
+    formData.append("file", textData);
+    return this.httpClient.put(`https://restapifordigialbumproject-production.up.railway.app/text/`+id_no, formData);
+  }
+
+  deleteTextData(id_no: number) {
+    //let formData = new FormData();
+    //formData.append("file", textData);
+    return this.httpClient.delete(`https://restapifordigialbumproject-production.up.railway.app/file_delete/`+id_no);
+  }
   /*postTextData() {
     return this.httpClient.get(`https://restapifordigialbumproject-production.up.railway.app/Photos`);
   }*/

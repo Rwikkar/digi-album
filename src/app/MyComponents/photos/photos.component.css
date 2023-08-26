@@ -15,3 +15,13 @@
 figcaption {
     text-align: left !important;
 }
+
+.button-2 {
+    margin-left: 3px;
+    border: solid !important;
+}
+
+.btn {
+    margin-top: 3px;
+    border: 3px;
+}

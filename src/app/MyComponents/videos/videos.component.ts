@@ -15,6 +15,7 @@ export class VideosComponent implements OnInit {
     this.myTrustedUrl = sanitizer.bypassSecurityTrustUrl(this.AllPhotoData);
   }
   ngOnInit() {
+    this.showContent = true;
     this.getAllPhotos();
   }
 
@@ -24,6 +25,7 @@ export class VideosComponent implements OnInit {
   imgSrcData: any;
   imgCaption: any;
   imgDescription: any;
+  vdoTagId: any;
 
   getAllPhotos() {
     this.showLoader = true;
@@ -54,7 +56,35 @@ export class VideosComponent implements OnInit {
 
   clickOnPhoto(imgTagId: any, imgCaption: any, imgDescription: any) {
     this.imgSrcData = (document.getElementById(imgTagId))?.getAttribute('src');
+    this.vdoTagId = imgTagId;
     this.imgCaption = imgCaption;
     this.imgDescription = imgDescription;
+  }
+
+  showContent: any;
+  deleteVideoFile(videoId: any) {
+    this.showLoader = true;
+    this.showContent = false;
+    this.api.deleteTextData(videoId).subscribe({
+      next: (response) => {
+        console.log(response);
+        alert("Done!");
+        this.getAllPhotos();
+        this.showLoader = false;
+        this.showContent = true;
+      },
+      error: (error) => {
+        console.log(error);
+        alert("Error!");
+        this.getAllPhotos();
+        this.showLoader = false;
+        this.showContent = true;
+      },
+      complete: () => {
+        console.log("Request Completed!");
+        this.showLoader = false;
+        this.showContent = true;
+      }
+    })
   }
 }

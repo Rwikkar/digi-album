@@ -36,3 +36,13 @@ figcaption {
     font-size: xx-small;
     color: #f1f0f0;
 }
+
+.button-2 {
+    margin-left: 3px;
+    border: solid !important;
+}
+
+.btn {
+    margin-top: 3px;
+    border: 3px;
+}

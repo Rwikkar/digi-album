@@ -12,6 +12,7 @@ export class PhotosComponent implements OnInit {
   ) { }
   ngOnInit() {
     this.getAllPhotos();
+    this.showContent = true;
   }
   
 
@@ -21,6 +22,7 @@ export class PhotosComponent implements OnInit {
   imgSrcData: any;
   imgCaption: any;
   imgDescription: any;
+  imgTagId: any;
 
   getAllPhotos() {
     this.showLoader = true;
@@ -51,9 +53,38 @@ export class PhotosComponent implements OnInit {
 
   clickOnPhoto(imgTagId: any, imgCaption: any, imgDescription: any) {
     this.imgSrcData = (document.getElementById(imgTagId))?.getAttribute('src');
+    this.imgTagId = imgTagId;
     this.imgCaption = imgCaption;
     this.imgDescription = imgDescription;
   }
+
+  showContent: any;
+  deleteTextFile(textBoxId: any) {
+    this.showLoader = true;
+    this.showContent = false;
+    this.api.deleteTextData(textBoxId).subscribe({
+      next: (response) => {
+        console.log(response);
+        alert("Done!");
+        this.getAllPhotos();
+        this.showLoader = false;
+        this.showContent = true;
+      },
+      error: (error) => {
+        console.log(error);
+        alert("Error!");
+        this.getAllPhotos();
+        this.showLoader = false;
+        this.showContent = true;
+      },
+      complete: () => {
+        console.log("Request Completed!");
+        this.showLoader = false;
+        this.showContent = true;
+      }
+    })
+  }
+
   /*photoUrl=""
   getPhoto(PIds: number) {
     this.api.getImageById(PIds).subscribe({

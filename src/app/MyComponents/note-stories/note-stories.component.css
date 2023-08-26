@@ -1,3 +1,30 @@
-p {
+.div-class-main {
     padding-top: 5em;
+}
+
+.Image-Loading {
+    width: 350px;
+    height: fit-content;
+}
+
+.btn {
+    margin-top: 3px;
+    border: 3px;
+}
+
+.button-1 {
+    margin-left: 3px;
+    border: solid;
+}
+
+.button-2 {
+    margin-left: 3px;
+    border: solid;
+}
+
+@media screen and (max-width: 991px) {
+    .div-class {
+      margin-left: 1% !important;
+      margin-right: 1% !important;
+    }
 }

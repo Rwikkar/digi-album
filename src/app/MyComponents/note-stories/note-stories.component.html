@@ -1,6 +1,22 @@
-<p>note-stories works!</p>
-<button (click)="getTextValue()">Click Me!</button>
-<textarea type="HTMLTextAreaElement" class="form-control" id="exampleFormControlTextarea3" rows="8"
-*ngFor="let data of AllTextData">
-    {{data.raw_data}}
-</textarea>
+<div *ngIf="showLoader" class="mt-5 text-center">
+    <img class="Image-Loading" src="./assets/loading.gif" />
+</div>
+<div class="div-class-main" *ngIf="showContent">
+    <div class="ps-3 pe-3 ms-5 me-5 div-class" *ngFor="let data of AllTextData">
+        <p class="p-0 mt-3 mb-1"><b>Name:</b> {{data.file_name}}</p>
+        <textarea type="HTMLTextAreaElement" class="form-control" [id]="data.id" rows="7"
+            [readOnly]="readOnly">{{data.raw_data}}</textarea>
+        <button type="button" class="btn btn-outline-primary button-1" title="Download As Text File" (click)="downloadTxtFile(data.raw_data, data.file_name)">
+            <img src="./assets/download.png" height="20px">
+        </button>
+        <button type="button" class="btn btn-outline-secondary button-2" title="Edit Text" (click)="editText()">
+            <img src="./assets/edit-button.png" height="20px">
+        </button>
+        <button type="button" class="btn btn-outline-secondary button-2" title="Update Text" (click)="updateText(data.id)">
+            <img src="./assets/save.png" height="20px">
+        </button>
+        <button type="button" class="btn btn-outline-danger button-2" title="Delete Text" (click)="deleteTextFile(data.id)">
+            <img src="./assets/bin.png" height="20px">
+        </button>
+    </div>
+</div>
