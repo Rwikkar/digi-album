@@ -1,66 +1,25 @@
-<div class="container">
+<div class="container" *ngIf="showContent()">
 
     <!-------------------------Photos-------------------------->
     <h1 class="fw-light text-center text-lg-start mt-4 mb-0 photo-gallery">Photo Gallery</h1>
 
     <hr class="mt-2 mb-3">
 
-    <div class="row text-center text-lg-start">
+    <div *ngIf="showLoader" class="mt-5 text-center">
+        <img class="Home-Loading" src="./assets/loading.gif" />
+    </div>
 
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100" (click)="onClick()">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/pWkk7iiCoDM/500x300" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/aob0ukAYfuI/400x200" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/EUfxH-pze7s/600x400" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/sesveuG_rNo/50x50" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/sesveuG_rNo/800x800" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail Image-Gallery" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
-            </a>
+    <div class="row text-center text-lg-start" *ngIf="showContent1">
+
+        <div class="col-lg-2 col-md-4 col-6 pb-2" *ngFor="let data of AllPhotoData">
+            <button (click)="clickOnPhoto(data.id, data.caption, data.description)" type="button" class="border-0"
+                data-bs-toggle="modal" data-bs-target="#myModal">
+                <a class="d-block mb-1 h-100">
+                    <img [id]="data.id" class="img-fluid img-thumbnail Image-Gallery"
+                    [src]="data.raw_data" alt="">
+                </a>
+                <!--<figcaption class="figure-caption"><b>Caption:</b> {{data.caption}}</figcaption>-->
+            </button>
         </div>
         <div class="col-lg-2 col-md-4 col-6">
             <a routerLink="/Photos" class="d-block mb-4 h-100">
@@ -70,49 +29,109 @@
 
     </div>
 
+
+    <div id="myModal" class="modal fade" aria-labelledby="my-modalLabel" aria-hidden="true" tabindex="-1" role="dialog">
+        <div class="modal-dialog" data-dismiss="modal">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                    <img [src]="imgSrcData" class="img-responsive" style="width: 100%;">
+                    <figcaption class="figure-caption">
+                        <b>Caption:</b> {{imgCaption}}
+                    </figcaption>
+                    <figcaption class="figure-caption">
+                        <b>Description:</b> {{imgDescription}}
+                    </figcaption>
+                    <button type="button" class="btn btn-outline-danger button-2 pt-2 pb-2 ps-3 pe-3" title="Delete Photo"
+                        (click)="deleteTextFile(imgTagId)">
+                        <img src="./assets/bin.png" height="20px">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-------------------------Videos-------------------------->
     <h1 class="fw-light text-center text-lg-start mt-3 mb-0">Videos Gallery</h1>
 
     <hr class="mt-2 mb-3">
 
-    <div class="row text-center text-lg-start">
+    <div *ngIf="showLoader" class="mt-5 text-center">
+        <img class="Home-Loading" src="./assets/loading.gif" />
+    </div>
+
+    <div class="row text-center text-lg-start" *ngIf="showContent2">
 
 
-        <div class="col-lg-4 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-                    allowfullscreen></iframe>
-            </a>
+        <div class="col-lg-3 col-md-4 col-6 pt-2 main-div" *ngFor="let data2 of AllVideoData">
+            <button (click)="clickOnVideo(data2.id, data2.caption, data2.description)" type="button" class="border-0"
+                data-bs-toggle="modal" data-bs-target="#myModal2">
+                <a class="d-block mb-1">
+                    <div class="ratio ratio-4x3">
+                        <video class="embed-responsive-item video-tab-class" [id]="data2.id" [src]="data2.raw_data" alt=""
+                            controls height="150">
+                        </video>
+                    </div>
+                </a>
+                <figcaption class="figure-caption-desc">
+                    <b>Description:</b> This is a video description is for testing purpose
+                </figcaption>
+                <figcaption class="figure-caption">
+                    <b>Caption:</b> {{data2.caption}}
+                </figcaption>
+            </button>
         </div>
-        <div class="col-lg-4 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TwsBRM3TU7Y"
-                    allowfullscreen></iframe>
-            </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/z08b_JUceIA"
-                    allowfullscreen></iframe>
-            </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-                    allowfullscreen></iframe>
-            </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TwsBRM3TU7Y"
-                    allowfullscreen></iframe>
-            </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-6">
-            <a routerLink="/Videos" class="d-block mb-4 h-100">
+
+        <div class="col-lg-3 col-md-4 col-6 pt-2 main-div pt-3">
+            <a routerLink="/Videos" class="d-block mb-1">
                 <img class="img-fluid img-thumbnail VideoViewAll" src="assets/ViewAll.png" alt="">
             </a>
         </div>
+
+        <div id="myModal2" class="modal fade" aria-labelledby="my-modalLabel" aria-hidden="true" tabindex="-1" role="dialog">
+            <div class="modal-dialog" data-dismiss="modal">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                        <video [src]="vdoSrcData" class="img-responsive" style="width: 100%;" controls></video>
+                        <figcaption class="figure-caption">
+                            <b>Caption:</b> {{vdoCaption}}
+                        </figcaption>
+                        <figcaption class="figure-caption">
+                            <b>Description:</b> {{vdoDescription}}
+                        </figcaption>
+                        <button type="button" class="btn btn-outline-danger button-2 pt-2 pb-2 ps-3 pe-3" title="Delete Photo"
+                            (click)="deleteTextFile(vdoTagId)">
+                            <img src="./assets/bin.png" height="20px">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--<div id="myModal2" class="model  modal-md fade" aria-labelledby="my-modalLabel" aria-hidden="true" tabindex="-1" role="dialog">
+            <div class="modal-dialog" data-dismiss="#myModal2">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-bs-dismiss="#myModal2" aria-hidden="true">×</button>
+                        <video [src]="vdoSrcData" class="embed-responsive-item" style="width: 100%;" controls></video>
+                        <figcaption class="figure-caption">
+                            <b>Caption:</b> {{vdoCaption}}
+                        </figcaption>
+                        <figcaption class="figure-caption">
+                            <b>Description:</b> {{vdoDescription}}
+                        </figcaption>
+                        <button type="button" class="btn btn-outline-danger button-2 pt-2 pb-2 ps-3 pe-3" title="Delete Photo"
+                            (click)="deleteVideoFile(vdoTagId)">
+                            <img src="./assets/bin.png" height="20px">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
 
     </div>
     <!--------------------Note And Stories--------------------->

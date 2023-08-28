@@ -1,3 +1,7 @@
+.Home-Loading {
+    width: 350px;
+    height: fit-content;
+}
 .photo-gallery {
     padding-top: 1.4em;
 }
@@ -14,4 +18,13 @@
       float: none;
       width: 100%;
     }
+}
+
+figcaption {
+    text-align: left !important;
+}
+
+.figure-caption-desc {
+    font-size: xx-small;
+    color: #f1f0f0;
 }

@@ -12,6 +12,13 @@ export class ApiCallService {
   ) { }
   // http://localhost:8080
   // https://restapifordigialbumproject-production.up.railway.app
+
+  getSpecificFiles(fileType: String, noOfFiles: number) : Observable<any[]> {
+    return this.httpClient.get<any>(`https://restapifordigialbumproject-production.up.railway.app/Files/`+fileType+`/`+noOfFiles).pipe(
+      map(res => res as any[])
+      );
+  }
+
   postImageData(file: Blob) {
     let formData = new FormData();
     formData.append("image", file);
